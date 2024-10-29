@@ -11,10 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
+      - run: npm ci
+        working-directory: ./frontend/split-app-react
+      - run: npm run build
+        working-directory: ./frontend/split-app-react
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SPLIT_APP_TO_HELP_ME_WEB }}
           channelId: live
           projectId: split-app-to-help-me-web
+          entryPoint: ./frontend/split-app-react
