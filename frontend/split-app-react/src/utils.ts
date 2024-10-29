@@ -1,5 +1,3 @@
-// src/utils.ts
-
 import { Transaction } from './data';
 
 export function calculateBalances(

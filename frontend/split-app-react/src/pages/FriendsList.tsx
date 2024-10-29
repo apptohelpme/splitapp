@@ -1,5 +1,3 @@
-// src/pages/FriendsList.tsx
-
 import React from 'react';
 import {
   Container,

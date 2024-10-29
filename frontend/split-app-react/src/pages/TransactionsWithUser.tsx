@@ -1,5 +1,3 @@
-// src/pages/TransactionsWithUser.tsx
-
 import React from 'react';
 import {
   Container,
