@@ -20,7 +20,16 @@
     "url": "https://github.com/apptohelpme/splitapp/issues"
   },
   "homepage": "https://github.com/apptohelpme/splitapp#readme",
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
+  },
   "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.1.0",
+    "@mui/icons-material": "^6.1.5",
+    "@mui/material": "^6.1.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
