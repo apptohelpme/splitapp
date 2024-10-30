@@ -27,7 +27,7 @@ const App: React.FC = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" sx={{ flexGrow: 1 }}>
-            Splitwise Clone
+            Split App To Help Me
           </Typography>
           {currentUser ? (
             <>
