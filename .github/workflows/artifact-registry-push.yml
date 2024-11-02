@@ -31,8 +31,8 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/apptohelpme-docker/split-app-backend:${{ github.sha }}" -f ./backend/split-app/Dockerfile ./backend/split-app
+          docker build -t "us-central1-docker.pkg.dev/${{ secrets.GCP_ARTIFACT_PROJECT_ID }}/apptohelpme-docker/split-app-backend:${{ github.sha }}" -f ./backend/split-app/Dockerfile ./backend/split-app
 
       - name: Push Docker image to Google Artifact Registry
         run: |
-          docker push "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/apptohelpme-docker/split-app-backend:${{ github.sha }}"
+          docker push "us-central1-docker.pkg.dev/${{ secrets.GCP_ARTIFACT_PROJECT_ID }}/apptohelpme-docker/split-app-backend:${{ github.sha }}"
