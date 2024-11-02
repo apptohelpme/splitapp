@@ -1,0 +1,34 @@
+name: Build and Push to Artifact Registry
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+     - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ secrets.GCP_ARTIFACT_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_ARTIFACT_SA_KEY }}
+
+      - name: Authenticate Docker with Google Artifact Registry
+        run: gcloud auth configure-docker us-central1-docker.pkg.dev
+
+      - name: Build Docker image
+        run: |
+          docker build -t "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/apptohelpme-docker/split-app-backend:${{ github.sha }}" -f ./backend/split-app/Dockerfile ./backend/split-app
+
+      - name: Push Docker image to Google Artifact Registry
+        run: |
+          docker push "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/apptohelpme-docker/split-app-backend:${{ github.sha }}"

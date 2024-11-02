@@ -12,7 +12,7 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN go build -o split-app .
+RUN go build -o split-app-backend .
 
 # Start with a smaller image for the final container
 FROM alpine:latest AS runner
@@ -21,10 +21,10 @@ FROM alpine:latest AS runner
 WORKDIR /root
 
 # Copy the built binary from the builder stage
-COPY --from=builder /app/split-app /root/split-app
+COPY --from=builder /app/split-app-backend /root/split-app-backend
 
 # Expose the port the app runs on
 EXPOSE 8080
 
 # Command to run the application
-CMD ["/root/split-app"]
+CMD ["/root/split-app-backend"]
