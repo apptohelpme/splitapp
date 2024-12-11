@@ -23,3 +23,9 @@ go.work.sum
 
 # env file
 .env
+
+# secrets folder
+secrets
+
+# backend binary
+split-app/split-app
