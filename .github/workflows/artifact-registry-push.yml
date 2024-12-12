@@ -31,6 +31,7 @@ jobs:
       # Export the Firebase admin sdk private key to a file
       - name: Create Service Account Key File
         run: |
+          mkdir -p ./backend/split-app/secrets
           echo "${{ secrets.FIREBASE_ADMIN_SDK_WEB }}" > ./backend/split-app/secrets/split-app-firebase-adminsdk.json
 
       - name: Build Docker image
