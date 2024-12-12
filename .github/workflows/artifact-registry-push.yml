@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - 'backend/**'
+  # Trigger workflow manually from the GitHub Actions UI
+  workflow_dispatch:
 
 jobs:
   build-and-push:
