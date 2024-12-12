@@ -27,6 +27,11 @@ jobs:
 
       - name: Authenticate Docker with Google Artifact Registry
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
+      
+      # Export the Firebase admin sdk private key to a file
+      - name: Create Service Account Key File
+        run: |
+          echo "${{ secrets.FIREBASE_ADMIN_SDK_WEB }}" > ./backend/split-app/secrets/split-app-firebase-adminsdk.json
 
       - name: Build Docker image
         run: |
