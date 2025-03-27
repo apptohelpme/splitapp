@@ -20,11 +20,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci
+
+      - name: Install dependencies
+        run: npm ci
         working-directory: ./frontend/split-app-react
-      - run: npm run build
+
+      - name: Inject Firebase configuration
+        env:
+          VITE_FIREBASE_CONFIG: ${{ secrets.VITE_FIREBASE_CONFIG }}
+        run: |
+          echo "VITE_FIREBASE_CONFIG=$VITE_FIREBASE_CONFIG" >> ./frontend/split-app-react/.env
+
+      - name: Build the app
+        run: npm run build
         working-directory: ./frontend/split-app-react
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_SPLIT_APP_TO_HELP_ME_WEB }}
